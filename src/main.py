@@ -1,20 +1,18 @@
-import os
-import sys
-from pathlib import Path
+from fastapi import FastAPI
+
+from src.api.v1.endpoints.handlers_first import router as first_router
+from src.api.v1.endpoints.handlers_tag import router as tag_router
 
 
-# def create_root_path():
-#     root_path = Path(__file__).parent.resolve()
-#     print(root_path)
-#     if root_path not in sys.path:
-#         sys.path.insert(0, os.path.join(root_path))
-#
-#
-# create_root_path()
-from create_app import create_app
-from app.api.api import router as api_router
+def create_app() -> FastAPI:
+    app = FastAPI(
+        title='Simple APP',
+        docs_url='/api/docs',
+        description='Simple DDD example',
+        debug=True,
+    )
 
-app = create_app()
+    app.include_router(first_router)
+    app.include_router(tag_router)
 
-app.include_router(api_router)
-
+    return app

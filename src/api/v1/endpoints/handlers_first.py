@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Body, Response, Header
 
-
-router = APIRouter()
+router = APIRouter(tags=['First chapter'])
 
 
 @router.get("/hello")  # простой URL
