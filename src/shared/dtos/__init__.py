@@ -1,4 +1,7 @@
-from .tag_dto import TagDTO
+from .tag_dto import TagDTOInput, TagDTOResponse
 
 
-__all__ = ['TagDTO']
+__all__ = [
+    "TagDTOInput",
+    "TagDTOResponse",
+]

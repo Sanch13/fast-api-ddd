@@ -18,8 +18,5 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-dev
 
-# Добавление остального исходного кода проекта
-COPY fast-api.db .dockerignore /app/
-
 # Добавление исполняемых файлов в начало PATH
 ENV PATH="/app/.venv/bin/:$PATH"

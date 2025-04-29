@@ -1,8 +1,5 @@
-from .tag_repository import TagRepository
-from .tag import Tag
-
-
-__all__ = [
-    "TagRepository",
-    "Tag",
-]
+# from .tag_repository import TagRepository
+#
+# __all__ = [
+#     "TagRepository",
+# ]

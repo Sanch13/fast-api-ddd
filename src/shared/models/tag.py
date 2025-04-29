@@ -8,10 +8,10 @@ class TagIn(BaseModel):
 
 class Tag(BaseModel):
     tag: str
-    created: datetime
+    created_at: datetime
     secret: str
 
 
 class TagOut(BaseModel):
     tag: str
-    created: datetime
+    created_at: datetime
