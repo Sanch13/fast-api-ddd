@@ -11,3 +11,11 @@ APP_CONTAINER = main-app
 .PHONY: local-app
 local-app:
 	@uvicorn --factory src.main:create_app --reload --host 0.0.0.0 --port 8000
+
+.PHONY: app
+app:
+	@${DC} -f ${APP_FILE} up --build -d
+
+.PHONY: app-down
+app-down:
+	@${DC} -f ${APP_FILE} down
