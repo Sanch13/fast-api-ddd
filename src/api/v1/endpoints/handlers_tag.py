@@ -2,35 +2,25 @@ from typing import List
 
 from fastapi import APIRouter, Body
 
-from src.apps.tag.mappers import TagMapper
-from src.apps.tag.service.service import TagsService
-from src.apps.tag.infrastructure.tag_repository import TagRepository
-from src.shared.dtos import TagDTOInput, TagDTOResponse
+from src.apps.tag.depends import ITagCreateService, IGetAllTagsService, IGetTagByIdService
+from src.shared.dtos import TagDTOInput
 from src.shared.models.tag import TagOut
-from src.config.database.session import ISession
 
 router = APIRouter(tags=['Tags'])
 
 
-@router.post("/tag/create")
-def create_tag(session: ISession, tag: str = Body(embed=True)):
+@router.post("/tag/create", response_model=TagOut)
+def create_tag(service: ITagCreateService, tag: str = Body(embed=True)):
     dto = TagDTOInput(tag=tag)
-    tag_entity = TagMapper.dto_to_entity(dto=dto)
-    return TagsService(TagRepository(session)).create_tag(tag_entity)
+    # return asdict(service.execute(tag=dto.tag))
+    return service.execute(tag=dto.tag)
 
 
 @router.get("/tag/list", response_model=List[TagOut])
-def list_tags(session: ISession):
-    # вот здесь создаём репозиторий
-    repository = TagRepository(session)
-    tag_service = TagsService(repository)
-    res = tag_service.get_all_tags()
-    return res
+def list_tags(service: IGetAllTagsService):
+    return service.execute()
 
 
 @router.get("/tag/{tag_id}", response_model=TagOut)
-def get_tag(session: ISession, tag_id: int):
-    repository = TagRepository(session)
-    tag_service = TagsService(repository)
-    return tag_service.get_tag(tag_id)
-
+def get_tag(service: IGetTagByIdService, tag_id: int):
+    return service.execute(tag_id)

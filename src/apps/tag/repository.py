@@ -6,7 +6,7 @@ from src.shared.dtos import TagDTOResponse
 
 class ITagRepository(ABC):
     @abstractmethod
-    def create(self, tag: TagEntity) -> TagDTOResponse | None:
+    def create(self, tag: str) -> TagDTOResponse | None:
         pass
 
     @abstractmethod
