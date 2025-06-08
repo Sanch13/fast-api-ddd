@@ -1,8 +1,8 @@
-from src.shared.service.base_service import BaseService
+from src.shared.service.base_interactor import BaseInteractor
 from src.apps.tag.repository import ITagRepository
 
 
-class TagCreateService(BaseService):
+class TagCreateService(BaseInteractor):
     """Service to create a new tag"""
 
     def __init__(self, repository: ITagRepository):

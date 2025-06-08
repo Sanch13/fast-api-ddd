@@ -8,8 +8,8 @@ STORAGES_FILE = docker_compose/storages.yaml
 APP_CONTAINER = main-app
 
 
-.PHONY: local-app
-local-app:
+.PHONY: app-local
+app-local:
 	@uvicorn --factory src.main:create_app --reload --host 0.0.0.0 --port 8000
 
 .PHONY: app

@@ -5,7 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "aiosqlite>=0.21.0",
     "alembic>=1.15.2",
+    "dishka>=1.5.3",
+    "faker>=37.3.0",
     "fastapi>=0.115.12",
     "pydantic==2.11.1",
     "pysqlite3-binary>=0.5.4",

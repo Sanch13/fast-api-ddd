@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from src.api.v1.endpoints.handlers_first import router as first_router
 from src.api.v1.endpoints.handlers_tag import router as tag_router
+from src.api.v1.endpoints.handlers_explorer import router as explorer_router
 
 
 def create_app() -> FastAPI:
@@ -14,5 +15,6 @@ def create_app() -> FastAPI:
 
     app.include_router(first_router)
     app.include_router(tag_router)
+    app.include_router(explorer_router)
 
     return app
